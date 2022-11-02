@@ -8,11 +8,12 @@ import { Pokemon } from './pokemon';
   // selector permet de donner un nom (avec balise html personnalisée) au composant afin de l'identifier par la suite
   selector: 'app-root',
   // template permet de définir le code html
-  template: `
-      <h1>
-        Liste de Pokémons
-      </h1>
-  `,
+  // template: `
+  //     <h1>
+  //       Liste de Pokémons
+  //     </h1>
+  // `,
+  templateUrl:'./app.component.html',
   styles: []
 })
 export class AppComponent implements OnInit {
