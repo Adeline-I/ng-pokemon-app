@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+// Un composant est une classe (logique du composant, propriétés et méthodes) + une vue (template)
+import { Component, OnInit } from '@angular/core';
+import { POKEMONS } from './mock-pokemon-list';
+import { Pokemon } from './pokemon';
 
 // Utilisation de l'importation Component sous la forme d'un décorateur avec @ qui va permettre de construire un composant web
 @Component({
@@ -7,12 +10,22 @@ import { Component } from '@angular/core';
   // template permet de définir le code html
   template: `
       <h1>
-        Welcome to {{title}}!
+        Liste de Pokémons
       </h1>
   `,
   styles: []
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   // déclaration de propriétés
-  title = 'ng-pokemon-app';
+  pokemonList: Pokemon[] = POKEMONS;
+
+  // déclaration de méthodes
+  ngOnInit(): void {
+    console.table(this.pokemonList);
+    this.selectPokemon(this.pokemonList[0])
+  }
+
+  selectPokemon(pokemon: Pokemon) {
+    console.log(`Vous avez cliqué sur le pokémon ${pokemon.name}`);
+  }
 }
