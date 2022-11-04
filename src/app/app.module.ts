@@ -3,11 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BorderCardDirective } from './border-card.directive';
 
 @NgModule({
   // List de tout les composants, les directives, les pipes qui appartiennent au module
   declarations: [
-    AppComponent
+    AppComponent,
+    BorderCardDirective
   ],
   // Déclarations de tout les éléments dont on a besoin d'importer et qui sont d'autres modules
   imports: [
