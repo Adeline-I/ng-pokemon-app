@@ -1,24 +1,40 @@
-<h1>Liste de Pokémons</h1>
+<h1 class="center">Liste de Pokémons</h1>
 
 <!-- déclaration de variables référencées dans le template avec `#` -->
 <!-- mise en place d'un événement keyup qui permettra de pousser directement la valeur dans l'interpolation input.value -->
 <!-- keyup.enter est un pseudo événement pour mettre en place des évévénement plus précis -->
-<input 
+<!-- <input 
     #input
     (keyup.enter)="selectPokemon(input.value)" 
     type="number" 
-/>
+/> -->
 
 <!-- '*' permet d'indiquer une directive structurelle -->
 <!-- 'ngIf' permet de conditionner un affichage -->
-<p *ngIf="pokemonSelected">
+<!-- <p *ngIf="pokemonSelected">
     Vous avez sélectionné : {{ pokemonSelected.name }}
 </p>
 <p *ngIf="!pokemonSelected">
     Aucun pokémon n'a été trouvé.
-</p>
+</p> -->
 
-<!-- 'ngFor' permet de boucler sur un tableau pour permettre un affichage -->
-<p *ngFor=" let pokemon of pokemonList">
-    {{ pokemon.name }}
-</p>
+<div class="container">
+    <div class="row">
+        <!-- 'ngFor' permet de boucler sur un tableau pour permettre un affichage -->
+        <div *ngFor=" let pokemon of pokemonList" class="col s6 m4">
+            <div class="card horizontal">
+                <div class="card-image">
+                    <img [src]="pokemon.picture" [alt]="pokemon.name">
+                </div>
+                <div class="card-stacked">
+                    <dir class="card-content">
+                        <p>{{ pokemon.name }}</p>
+                        <p>
+                            <small>{{ pokemon.created }}</small>
+                        </p>
+                    </dir>
+                </div>    
+            </div>
+        </div>
+    </div>
+</div>
