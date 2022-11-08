@@ -3,7 +3,7 @@
         <!-- '*' permet d'indiquer une directive structurelle -->
         <!-- 'ngFor' permet de boucler sur un tableau pour permettre un affichage -->
         <div *ngFor=" let pokemon of pokemonList" class="col s6 m4">
-            <div class="card horizontal" pkmnBorderCard="red">
+            <div (click)="goToPokemon(pokemon)" class="card horizontal" pkmnBorderCard="red">
                 <div class="card-image">
                     <img [src]="pokemon.picture" [alt]="pokemon.name">
                 </div>
