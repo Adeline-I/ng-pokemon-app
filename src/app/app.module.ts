@@ -7,6 +7,7 @@ import { BorderCardDirective } from './border-card.directive';
 import { PokemonTypeColorPipe } from './pokemon-type-color.pipe';
 import { ListPokemonComponent } from './list-pokemon/list-pokemon.component';
 import { DetailPokemonComponent } from './detail-pokemon/detail-pokemon.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   // List de tout les composants, les directives, les pipes qui appartiennent au module
@@ -15,7 +16,8 @@ import { DetailPokemonComponent } from './detail-pokemon/detail-pokemon.componen
     BorderCardDirective,
     PokemonTypeColorPipe,
     ListPokemonComponent,
-    DetailPokemonComponent
+    DetailPokemonComponent,
+    PageNotFoundComponent
   ],
   // Déclarations de tout les éléments dont on a besoin d'importer et qui sont d'autres modules
   imports: [
