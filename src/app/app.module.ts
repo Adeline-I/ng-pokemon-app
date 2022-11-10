@@ -3,11 +3,13 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 // HttpClientModule : Permet de requêter des serveurs distants
 import { HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PokemonModule } from './pokemon/pokemon.module';
+import { InMemoryDataService } from './in-memory-data.service';
 
 @NgModule({
   // List de tout les composants, les directives, les pipes qui appartiennent au module
@@ -20,6 +22,7 @@ import { PokemonModule } from './pokemon/pokemon.module';
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
     PokemonModule,
     AppRoutingModule
   ],
