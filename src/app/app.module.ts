@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+// HttpClientModule : Permet de requêter des serveurs distants
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +19,7 @@ import { PokemonModule } from './pokemon/pokemon.module';
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     PokemonModule,
     AppRoutingModule
   ],
