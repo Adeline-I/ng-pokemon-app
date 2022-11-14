@@ -16,8 +16,8 @@ export class PokemonFormComponent implements OnInit {
   // PokemonFormComponent est un outil permettant d'ajouter ou éditer un pokémon
   // On défini une propriété pour le composant : lorsque l'on veut utiliser app-pokemon-form, on doit passer une propriété d'entrée Pokemon
   @Input() pokemon: Pokemon;
-
   types: string[];
+  isAddForm: boolean;
 
   constructor(
     private pokemonService: PokemonService,
@@ -27,6 +27,7 @@ export class PokemonFormComponent implements OnInit {
   ngOnInit(): void {
     // pokemonTypeList
     this.types = this.pokemonService.getPokemonTypeList();
+    this.isAddForm = this.router.url.includes('add');
   }
 
   // Permet de pré-cocher le type de pokémon s'il en a déjà un
@@ -65,8 +66,13 @@ export class PokemonFormComponent implements OnInit {
 
   // Prend en compte la soumission du formulaire
   onSubmit() {
-    this.pokemonService.updatePokemon(this.pokemon)
-      // redirection en cas de succès
-      .subscribe(() => this.router.navigate(['/pokemon', this.pokemon.id]));
+    if (this.isAddForm) {
+      this.pokemonService.addPokemon(this.pokemon)
+        .subscribe((pokemon: Pokemon) => this.router.navigate(['/pokemon', pokemon.id]));
+    } else {
+      this.pokemonService.updatePokemon(this.pokemon)
+        // redirection en cas de succès
+        .subscribe(() => this.router.navigate(['/pokemon', this.pokemon.id]));
+    }
   }
 }
