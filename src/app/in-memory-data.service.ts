@@ -12,6 +12,7 @@ export class InMemoryDataService implements InMemoryDbService {
   // Simule une API Rest avec des opérations CRUD pour les données des pokémons
   // Simule comme si les données venaient du serveur
   createDb() {
-    return { POKEMONS };
+    const pokemons = POKEMONS;
+    return { pokemons };
   }
 }
