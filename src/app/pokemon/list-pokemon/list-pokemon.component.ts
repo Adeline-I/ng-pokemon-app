@@ -19,7 +19,10 @@ export class ListPokemonComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.pokemonList = this.pokemonService.getPokemonList();
+    // On récupère un Observable depuis pokemonService
+    this.pokemonService.getPokemonList()
+      // On s'abonne avec subscribe où on récupère la pokemonList pour la pousser dans la propriété du composant
+      .subscribe(pokemonList => this.pokemonList = pokemonList);
   }
 
   goToPokemon(pokemon: Pokemon) {
