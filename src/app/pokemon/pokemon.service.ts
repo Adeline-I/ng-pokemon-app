@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, of, tap } from 'rxjs';
 import { Pokemon } from './pokemon';
@@ -39,7 +39,19 @@ export class PokemonService {
     );
   }
 
-  private log(response: Pokemon[]|Pokemon|undefined) {
+  // Permet de persister les données modifiées vers le serveur
+  updatePokemon(pokemon: Pokemon): Observable<Pokemon|undefined|null> {
+    const httpOptions = {
+      headers : new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+
+    return this.http.put('api/pokemons', pokemon, httpOptions).pipe(
+      tap((response) => this.log(response)),
+      catchError((error) => this.handleError(error, null))
+    );
+  }
+
+  private log(response: any) {
     console.table(response);
   }
   
