@@ -26,24 +26,27 @@ export class PokemonService {
       // on définit ce que l'on veut faire en plus du traitement de la requête
       // loguer la réponse et intercepter les erreurs éventuelles
       // tap équivaut à un console.log pour un Observable
-      tap((pokemonList) => console.table(pokemonList)),
-      catchError((error) => {
-        console.log(error);
-        // On retourne un observable : tableau vide
-        return of([]);
-      })
+      tap((response) => this.log(response)),
+      catchError((error) => this.handleError(error, []))
       // Rend à disposition l'objet lorsque les composants vont l'appeller, qui pourront 'subscribe' pour récupérer les données qui sont contenus dans le flux 
     );
   }
 
   getPokemonById(pokemonId: number): Observable<Pokemon|undefined> {
     return this.http.get<Pokemon>(`api/pokemons/${pokemonId}`).pipe(
-      tap((pokemon) => console.log(pokemon)),
-      catchError((error) => {
-        console.log(error);
-        return of(undefined);
-      })
+      tap((response) => this.log(response)),
+      catchError((error) => this.handleError(error, undefined))
     );
+  }
+
+  private log(response: Pokemon[]|Pokemon|undefined) {
+    console.table(response);
+  }
+  
+  private handleError(error: Error, errorValue: any) {
+    console.error(error);
+    // On retourne un observable (flux de données) : any|tableau vide|undefined
+    return of(errorValue);
   }
 
   getPokemonTypeList(): string[] {
