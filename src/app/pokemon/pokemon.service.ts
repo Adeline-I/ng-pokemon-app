@@ -39,6 +39,18 @@ export class PokemonService {
     );
   }
 
+  searchPokemonList(term: string): Observable<Pokemon[]> {
+    // Si le 'term' de recherche est inérieur à 2 lettres, on retourne un tableau vide donc on affiche rien à l'utilisateur
+    if (term.length <= 1) {
+      return of([]);
+    }
+    
+    return this.http.get<Pokemon[]>(`api/pokemons/?name=${term}`).pipe(
+      tap((response) => this.log(response)),
+      catchError((error) => this.handleError(error, []))
+    )
+  }
+
   // Permet de persister les données modifiées vers le serveur
   updatePokemon(pokemon: Pokemon): Observable<Pokemon|undefined|null> {
     const httpOptions = {
