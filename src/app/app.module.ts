@@ -10,12 +10,14 @@ import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PokemonModule } from './pokemon/pokemon.module';
 import { InMemoryDataService } from './in-memory-data.service';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   // List de tout les composants, les directives, les pipes qui appartiennent au module
   declarations: [
     AppComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    LoginComponent
   ],
   // Déclarations de tout les éléments dont on a besoin d'importer et qui sont d'autres modules
   imports: [
